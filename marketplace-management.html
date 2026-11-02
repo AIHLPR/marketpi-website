@@ -185,6 +185,15 @@ ul,ol{margin:0;padding:0;list-style:none}
 .nav .links{display:flex;gap:24px;flex:1;font-size:15px}
 .nav .links a{color:var(--ink2)}.nav .links a:hover{color:var(--amber)}
 .nav .btn{height:40px;padding:0 16px;font-size:14.5px;margin-left:auto}
+.nav .links a[aria-current]{color:var(--ink);font-weight:500}
+.nav .menu{display:none;position:relative}
+.nav .menu summary{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--line);border-radius:10px;cursor:pointer;list-style:none;color:var(--ink)}
+.nav .menu summary::-webkit-details-marker{display:none}
+.nav .menu summary svg{width:20px;height:20px}
+.nav .menu-list{position:absolute;top:calc(100% + 8px);right:0;display:flex;flex-direction:column;min-width:240px;padding:8px;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 12px 32px rgba(27,31,36,.12);font-size:16px}
+.nav .menu-list a{padding:12px;border-radius:8px;color:var(--ink)}
+.nav .menu-list a[aria-current]{font-weight:600}
+@media (max-width:1000px){.nav .wrap{gap:12px}.nav .menu{display:block}}
 /* sections */
 .sec{padding:clamp(72px,9vw,120px) 0}
 .sec.w{background:var(--white)}
@@ -542,7 +551,7 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 <style id="__om-edit-overrides"></style>
 </head>
 <body class="mm">
-<nav class="nav" aria-label="Main navigation"><div class="wrap"><a class="brand" href="index.html#top"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" aria-hidden="true"><path d="M12.95 25 A22 22 0 0 1 51.05 25"></path><path d="M20 17.6 V56"></path><path d="M44 17.6 V49 A7 7 0 0 0 51 56"></path></svg>MarketPi</a><div class="links"><a href="index.html#capabilities">Capabilities</a><a href="index.html#platform">Platform</a><a href="index.html#monitor">Monitoring</a><a href="studio">Studio</a><a href="index.html#why">Why MarketPi</a></div><a class="btn" href="index.html#demo">Explore MarketPi</a></div></nav>
+<nav class="nav" aria-label="Main navigation"><div class="wrap"><a class="brand" href="/"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" aria-hidden="true"><path d="M12.95 25 A22 22 0 0 1 51.05 25"></path><path d="M20 17.6 V56"></path><path d="M44 17.6 V49 A7 7 0 0 0 51 56"></path></svg>MarketPi</a><div class="links"><a href="/marketplace-management" aria-current="page">Marketplace Management</a><a href="/studio">Studio</a><a href="/#why">Why MarketPi</a><a href="/#pricing">Pricing</a></div><a class="btn" href="/#demo">Explore MarketPi</a><details class="menu"><summary aria-label="Open menu"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></summary><div class="menu-list" onclick="this.parentNode.open=false"><a href="/marketplace-management" aria-current="page">Marketplace Management</a><a href="/studio">Studio</a><a href="/#why">Why MarketPi</a><a href="/#pricing">Pricing</a></div></details></div></nav>
 
 <header class="sec hero mm-hero" id="top" data-screen-label="01 Hero"><div class="wrap">
 <div class="head"><span class="k">Marketplace management</span><h1 class="rv">Keep your marketplace content under control.</h1><p class="lede rv d1">Prepare marketplace versions, follow publication and identify differences between approved content and live listings. Give your team a shared view of what needs attention.</p><div class="cta rv d2"><a class="btn" href="mailto:marketpi@aihlpr.com?subject=MarketPi%20demo%20enquiry">Request a demo</a></div></div>
@@ -559,7 +568,7 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 </div></section>
 
 <section class="sec w" id="action" data-screen-label="04 Turn findings into action"><div class="wrap">
-<div class="split"><div class="head rv"><h2>Turn findings into action.</h2></div><div class="copy rv d1"><p>Assign responsibility, coordinate updates and review the result. Keep open issues visible across the catalogue so the team knows what to work on next.</p><p class="xlink"><strong>Need revised product assets?</strong><br>Prepare them in MarketPi Studio, with the listing context connected to the work.</p><a class="more" href="studio">Explore Studio →</a></div></div>
+<div class="split"><div class="head rv"><h2>Turn findings into action.</h2></div><div class="copy rv d1"><p>Assign responsibility, coordinate updates and review the result. Keep open issues visible across the catalogue so the team knows what to work on next.</p><p class="xlink"><strong>Need revised product assets?</strong><br>Prepare them in MarketPi Studio, with the listing context connected to the work.</p><a class="more" href="/studio">Explore Studio →</a></div></div>
 </div></section>
 
 <section class="sec d close" id="demo" data-screen-label="05 Closing"><div class="wrap">
@@ -567,10 +576,10 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 </div></section>
 
 <footer><div class="wrap ft">
-<div class="fb"><a class="brand" href="index.html#top"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" aria-hidden="true"><path d="M12.95 25 A22 22 0 0 1 51.05 25"></path><path d="M20 17.6 V56"></path><path d="M44 17.6 V49 A7 7 0 0 0 51 56"></path></svg>MarketPi</a><p>AI-powered marketplace content &amp; listing management.</p><p class="co">MarketPi is a brand of Morality Bytes VOF.</p></div>
-<div class="fc"><span class="k">Product</span><a href="index.html#capabilities">Capabilities</a><a href="marketplace-management">Marketplace management</a><a href="index.html#platform">Platform</a><a href="index.html#monitor">Monitoring</a><a href="studio">Studio</a><a href="index.html#assistant">Assistant</a><a href="index.html#pricing">Pricing</a></div>
-<div class="fc"><span class="k">Company</span><a href="index.html#why">Why MarketPi</a><a href="mailto:marketpi@aihlpr.com?subject=MarketPi%20demo%20enquiry">Book a demo</a><a href="mailto:marketpi@aihlpr.com">marketpi@aihlpr.com</a><address>Morality Bytes VOF<br>Wibautstraat 129<br>1091 GL Amsterdam<br>Netherlands</address></div>
-<div class="fc"><span class="k">Legal</span><a href="Legal.html#privacy">Privacy</a><a href="Legal.html#terms">Terms</a><a href="Legal.html#cookies">Cookies</a></div>
+<div class="fb"><a class="brand" href="/"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" aria-hidden="true"><path d="M12.95 25 A22 22 0 0 1 51.05 25"></path><path d="M20 17.6 V56"></path><path d="M44 17.6 V49 A7 7 0 0 0 51 56"></path></svg>MarketPi</a><p>AI-powered marketplace content &amp; listing management.</p><p class="co">MarketPi is a brand of Morality Bytes VOF.</p></div>
+<div class="fc"><span class="k">Product</span><a href="/#capabilities">Capabilities</a><a href="/marketplace-management">Marketplace management</a><a href="/#platform">Platform</a><a href="/#monitor">Monitoring</a><a href="/studio">Studio</a><a href="/#assistant">Assistant</a><a href="/#pricing">Pricing</a></div>
+<div class="fc"><span class="k">Company</span><a href="/#why">Why MarketPi</a><a href="mailto:marketpi@aihlpr.com?subject=MarketPi%20demo%20enquiry">Book a demo</a><a href="mailto:marketpi@aihlpr.com">marketpi@aihlpr.com</a><address>Morality Bytes VOF<br>Wibautstraat 129<br>1091 GL Amsterdam<br>Netherlands</address></div>
+<div class="fc"><span class="k">Legal</span><a href="/legal#privacy">Privacy</a><a href="/legal#terms">Terms</a><a href="/legal#cookies">Cookies</a></div>
 </div><div class="wrap fl"><span>© 2026 Morality Bytes VOF</span><span>marketpi.aihlpr.com</span></div></footer>
 <script src="assets/js/site.js"></script>
 <div class="lbx" id="lbx" hidden=""><button class="lbx-x" type="button" aria-label="Close">×</button><img alt=""></div>
