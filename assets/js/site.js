@@ -13,13 +13,19 @@ document.addEventListener('keydown',e=>{
   const m=document.querySelector('.nav .menu[open]');
   if(m){m.open=false;m.querySelector('summary').focus();}
 });
+// ...and a click or tap outside it closes it too.
+document.addEventListener('click',e=>{
+  const m=document.querySelector('.nav .menu[open]');
+  if(m&&!m.contains(e.target))m.open=false;
+});
 
 // Lightbox: a modal <dialog>. Focus moves into it, Escape closes it, focus returns to the image.
 const box=document.getElementById('lbx');
 if(box&&box.showModal){
   const im=box.querySelector('img');let from=null;
   document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{
-    const s=b.querySelector('img');im.src=s.currentSrc||s.src;im.alt=s.alt;from=b;
+    const s=b.querySelector('img');im.src=s.src;  // full-size original, not the srcset/phone variant
+    im.alt=s.alt;from=b;
     box.showModal();document.body.style.overflow='hidden';
   }));
   const done=()=>{document.body.style.overflow='';if(from){const f=from;from=null;f.focus();}};
