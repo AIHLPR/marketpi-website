@@ -151,7 +151,7 @@ a{color:var(--ink);text-decoration:none}a:hover{color:var(--amber)}
 button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer}
 img{display:block;max-width:100%;height:auto}
 p{text-wrap:pretty;margin:0}
-h1,h2,h3{margin:0;font-weight:500;letter-spacing:-.015em;text-wrap:balance}
+h1,h2,h3{margin:0;font-weight:600;letter-spacing:-.02em;text-wrap:balance}
 ul{margin:0;padding:0;list-style:none}
 .k{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink3)}
 .wrap{width:100%;max-width:1280px;margin:0 auto;padding:0 var(--pad)}
@@ -197,11 +197,11 @@ ul{margin:0;padding:0;list-style:none}
 .hero{padding:clamp(48px,5vw,72px) 0 0;overflow:hidden}
 .hero .wrap{gap:clamp(36px,5vw,64px)}
 .hero .top{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:40px;align-items:end}
-.hero h1{font-size:clamp(38px,3.7vw,52px);font-weight:400;line-height:1.08;letter-spacing:-.02em;max-width:22ch;margin-top:14px}
+.hero h1{font-size:clamp(40px,4.4vw,64px);font-weight:600;line-height:1.02;letter-spacing:-.03em;max-width:22ch}
 .hero .lede{font-size:clamp(16.5px,1.25vw,18px);color:var(--ink2);max-width:56ch}
 .hero .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
 .hero .shot{margin-bottom:-6vw}
-.close h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;letter-spacing:-.025em}
+.close h2{font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.025em}
 .close p{font-size:18px;color:var(--ink2);margin-top:18px;max-width:44ch}
 footer{background:var(--ink);color:#A4A8AE;padding:28px 0 44px;font-size:13.5px;border-top:1px solid rgba(246,243,236,.12)}
 footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px 28px}
@@ -236,7 +236,7 @@ footer a{color:var(--cream);text-decoration:underline;text-underline-offset:3px}
 .copy ul::marker{color:var(--ink3)}
 /* close */
 .close .head{max-width:60ch}
-.close .head h2{font-size:clamp(34px,4.6vw,64px);line-height:1.02;letter-spacing:-.025em}
+.close .head h2{font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.025em}
 .close .head p{color:var(--ink2)}
 .close .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 #pricing{padding:clamp(56px,7vw,88px) 0}
@@ -264,7 +264,7 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 /* product pages: hero, screenshots, states, video */
 .mm-hero{padding-bottom:clamp(56px,7vw,96px)}
 .mm-hero .head{max-width:none;gap:0}
-.mm-hero h1{margin-top:14px}
+.mm-hero h1{margin:0}
 .mm-hero .lede{margin-top:22px}
 .shot{margin:0;display:flex;flex-direction:column;gap:12px;width:100%}
 .shot .zoom{display:block;width:100%;padding:0;border:1px solid var(--lineD);border-radius:14px;background:#F6F3EC;overflow:hidden;cursor:zoom-in;text-align:left}
@@ -284,7 +284,7 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 .mod.r{grid-template-columns:minmax(0,7fr) minmax(0,5fr)}
 .mod.r .txt{order:2}
 .mod .txt{display:flex;flex-direction:column;gap:16px;align-items:flex-start}
-.mod .txt h3{font-size:clamp(24px,2.4vw,32px);line-height:1.15;letter-spacing:-.015em;font-weight:500;text-wrap:balance;max-width:24ch}
+.mod .txt h3{font-size:clamp(24px,2.4vw,32px);line-height:1.15;letter-spacing:-.02em;font-weight:600;text-wrap:balance;max-width:24ch}
 .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}.tags .tag{font-size:11px;color:var(--ink2);background:var(--white)}.hero .tags+.cta{margin-top:22px}
 /* AI Marketplace Studio page */
 .mm-hero .lede+.lede{margin-top:14px}
@@ -333,3 +333,35 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 .close .price .more{color:#E7C98F}
 @media (max-width:1000px){.mod,.mod.r{grid-template-columns:minmax(0,1fr)}.mod.r .txt{order:0}.mod .mshot{justify-self:start}.close .two{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.s2o{grid-template-columns:minmax(0,1fr)}.s2o .arr svg{transform:rotate(90deg)}}
+/* four-state rail: Approved, Accepted, Live, Findable. The product's own model, used as the site's signature */
+.rail{--dot:28px;--g:clamp(20px,3vw,44px);--surface:var(--cream);display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0 var(--g);margin:0;padding:0;list-style:none}
+.sec.w .rail{--surface:var(--white)}
+.rail .st{position:relative;display:flex;flex-direction:column;gap:8px;padding-top:calc(var(--dot) + 18px)}
+.rail .st:not(:last-child):after{content:"";position:absolute;top:calc(var(--dot)/2 - 1px);left:calc(var(--dot) + 8px);right:calc(8px - var(--g));height:2px;border-radius:1px;background:var(--lineD)}
+.rail .dot{position:absolute;top:0;left:0;width:var(--dot);height:var(--dot);border-radius:50%;display:flex;align-items:center;justify-content:center;background:var(--surface);border:1.5px solid var(--ink);color:var(--ink);font-family:var(--mono);font-size:12px;font-weight:500}
+.rail .dot svg{width:15px;height:15px}
+.rail .ok .dot{background:var(--ink);border-color:var(--ink);color:var(--cream)}
+.rail .x .dot{background:var(--bad);border-color:var(--bad);color:#fff}
+.rail .sl{font-size:15px;font-weight:600;letter-spacing:-.005em;color:var(--ink)}
+.rail .x .sl{color:var(--bad)}
+.rail h3{font-size:clamp(20px,1.7vw,24px);line-height:1.18;margin-top:2px}
+.rail p{font-size:15.5px;color:var(--ink2);max-width:34ch}
+.rail .sl+p{margin-top:-4px}
+.mm-hero .rail{margin-top:clamp(40px,5vw,64px);max-width:980px}
+.mm-hero .rail p{font-size:14.5px}
+/* ordered workflow steps */
+.split.top{align-items:start}
+.steps{display:flex;flex-direction:column;margin:0;padding:0;list-style:none;counter-reset:s}
+.steps li{counter-increment:s;display:grid;grid-template-columns:40px minmax(0,1fr);column-gap:16px;row-gap:10px;padding:26px 0;border-top:1px solid var(--line)}
+.steps li:first-child{border-top:0;padding-top:4px}
+.steps li:before{content:counter(s,decimal-leading-zero);grid-row:1;font-family:var(--mono);font-size:13px;color:var(--ink3);padding-top:6px}
+.steps h3{grid-column:2;font-size:clamp(20px,1.7vw,24px);line-height:1.2}
+.steps p{grid-column:2;font-size:16px;color:var(--ink2);max-width:56ch}
+@media (max-width:760px){
+.rail{grid-template-columns:minmax(0,1fr)}
+.rail .st{padding:0 0 30px calc(var(--dot) + 18px);min-height:var(--dot)}
+.rail .st:last-child{padding-bottom:0}
+.rail .st:not(:last-child):after{top:calc(var(--dot) + 6px);bottom:6px;left:calc(var(--dot)/2 - 1px);right:auto;width:2px;height:auto}
+.rail .sl{padding-top:4px}
+.steps li{grid-template-columns:32px minmax(0,1fr);column-gap:10px}
+}
