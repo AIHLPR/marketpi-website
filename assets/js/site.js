@@ -1,33 +1,51 @@
 (function(){
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,IO='IntersectionObserver' in window;
+window.__site=true;
+
+// Reveal on scroll. Content is only hidden while <html> has .js, set in the page head.
 const rv=[...document.querySelectorAll('.rv')];
 if(reduce||!IO)rv.forEach(e=>e.classList.add('in'));
 else{const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.1,rootMargin:'0px 0px -6% 0px'});rv.forEach(e=>io.observe(e));}
-// workflow
-const flow=document.querySelector('.flow');
-if(flow){const steps=[...flow.querySelectorAll('.fstep')],nodes=[...flow.querySelectorAll('.node')],peeks=[...flow.querySelectorAll('.peek')],prog=flow.querySelector('.prog'),N=steps.length;
-  const set=i=>{steps.forEach((s,j)=>s.classList.toggle('on',j===i));nodes.forEach((n,j)=>{n.classList.toggle('on',j===i);n.classList.toggle('done',j<i);});peeks.forEach((p,j)=>p.hidden=j!==i);prog.style.width=(75*i/(N-1))+'%';};
-  set(0);
-  if(IO){const so=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)set(steps.indexOf(e.target));}),{rootMargin:'-45% 0px -45% 0px'});steps.forEach(s=>so.observe(s));}
-  nodes.forEach((n,i)=>n.addEventListener('click',()=>{set(i);const r=steps[i].getBoundingClientRect();window.scrollTo({top:window.scrollY+r.top-innerHeight*.4,behavior:reduce?'auto':'smooth'});}));}
-// publish table: a row opens its detail
-const pt=document.querySelector('.pt');
-if(pt){const rows=[...pt.querySelectorAll('.row')],dets=[...pt.querySelectorAll('.pdet')];
-  const open=k=>{rows.forEach((r,j)=>r.classList.toggle('on',j===k));dets.forEach((d,j)=>d.hidden=j!==k);pt.classList.toggle('open',k>=0);};
-  rows.forEach((r,k)=>r.addEventListener('click',()=>open(r.classList.contains('on')?-1:k)));open(-1);}
-// manage excerpt
-const mg=document.querySelector('.mg');
-if(mg){const items=[...mg.querySelectorAll('.it')],t=[];let played=false;
-  const reset=()=>{t.forEach(clearTimeout);t.length=0;mg.classList.remove('open','assigned');items.forEach(x=>x.classList.remove('on'));};
-  const play=()=>{reset();const d=reduce?0:1;t.push(setTimeout(()=>{items[0].classList.add('on');mg.classList.add('open');},900*d));t.push(setTimeout(()=>mg.classList.add('assigned'),3000*d));};
-  mg.querySelector('[data-assign]').addEventListener('click',()=>{if(mg.classList.contains('open'))mg.classList.add('assigned');});
-  items.forEach(x=>x.addEventListener('click',()=>{t.forEach(clearTimeout);items.forEach(y=>y.classList.remove('on'));x.classList.add('on');mg.classList.add('open');mg.classList.remove('assigned');}));
-  document.querySelector('[data-replay]').addEventListener('click',play);
-  if(IO){const mo=new IntersectionObserver(es=>{if(es[0].isIntersecting&&!played){played=true;play();}},{threshold:.45});mo.observe(mg);}else play();}
-// watch the demo
-const modal=document.getElementById('watch');
-if(modal){document.querySelectorAll('[data-watch]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();modal.hidden=false;document.body.style.overflow='hidden';}));
-  const close=()=>{modal.hidden=true;document.body.style.overflow='';};
-  modal.addEventListener('click',e=>{if(e.target===modal||e.target.closest('[data-close]'))close();});
-  window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!modal.hidden)close();});}
+
+// Mobile menu: Escape closes it and returns focus to the toggle.
+document.addEventListener('keydown',e=>{
+  if(e.key!=='Escape')return;
+  const m=document.querySelector('.nav .menu[open]');
+  if(m){m.open=false;m.querySelector('summary').focus();}
+});
+// ...and a click or tap outside it closes it too.
+document.addEventListener('click',e=>{
+  const m=document.querySelector('.nav .menu[open]');
+  if(m&&!m.contains(e.target))m.open=false;
+});
+
+// Lightbox: a modal <dialog>. Focus moves into it, Escape closes it, focus returns to the image.
+const box=document.getElementById('lbx');
+if(box&&box.showModal){
+  const im=box.querySelector('img');let from=null;
+  document.querySelectorAll('.zoom').forEach(b=>b.addEventListener('click',()=>{
+    const s=b.querySelector('img');im.src=s.src;  // full-size original, not the srcset/phone variant
+    im.alt=s.alt;from=b;
+    box.showModal();document.body.style.overflow='hidden';
+  }));
+  const done=()=>{document.body.style.overflow='';if(from){const f=from;from=null;f.focus();}};
+  const shut=()=>{if(box.open)box.close();done();};
+  box.addEventListener('click',shut);
+  box.addEventListener('cancel',e=>{e.preventDefault();shut();});
+  box.addEventListener('close',done);
+}
+
+// Hero video: plays while on screen unless the visitor paused it or prefers reduced motion.
+const hv=document.querySelector('.hero-vid'),ctl=document.querySelector('.vctl');
+if(hv&&ctl){
+  let paused=reduce,visible=false;
+  const sync=()=>{ctl.classList.toggle('paused',paused);ctl.setAttribute('aria-label',paused?'Play animation':'Pause animation');};
+  const go=()=>{if(!paused&&visible){const p=hv.play();if(p&&p.catch)p.catch(()=>{});}};
+  ctl.addEventListener('click',()=>{paused=!paused;sync();paused?hv.pause():go();});
+  if(IO)new IntersectionObserver(es=>es.forEach(e=>{visible=e.isIntersecting;visible?go():hv.pause();}),{threshold:.2}).observe(hv);
+  else{visible=true;go();}
+  // Some browsers block autoplay until the first interaction; retry then, but never against a pause.
+  ['pointerdown','keydown','touchstart'].forEach(t=>addEventListener(t,go,{passive:true,once:true}));
+  sync();
+}
 })();
