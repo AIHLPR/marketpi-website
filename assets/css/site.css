@@ -237,7 +237,7 @@ footer a{color:var(--cream);text-decoration:underline;text-underline-offset:3px}
 .close .head h2{font-size:clamp(30px,3.4vw,48px);line-height:1.06;letter-spacing:-.025em}
 .close .head p{color:var(--ink2)}
 .close .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-#pricing{padding:clamp(56px,7vw,88px) 0}
+#pricing .cta{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
 footer .wrap.ft{display:grid;grid-template-columns:minmax(0,1.6fr) repeat(3,minmax(0,1fr));gap:32px clamp(24px,4vw,64px);align-items:start}
 footer .fb{display:flex;flex-direction:column;gap:12px;max-width:34ch}
 footer .fb .brand{display:inline-flex;align-items:center;gap:10px;color:var(--cream);text-decoration:none;font-weight:500;font-size:16px}
@@ -249,6 +249,7 @@ footer .fc .k{color:var(--fog2);margin-bottom:4px}
 footer .fc a{color:var(--cream);text-decoration:none;font-size:14px}
 footer .fc address{font-style:normal;font-size:13.5px;line-height:1.5;color:var(--fog2);margin-top:6px}
 footer .fc a:hover{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+footer .wrap.legal{display:block;margin-top:36px;font-size:12.5px;line-height:1.6;color:var(--fog2)}footer .legal p{margin:0 0 6px;max-width:none}footer .legal+.wrap.fl{margin-top:14px}
 footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wrap:wrap;margin-top:36px;padding-top:18px;border-top:1px solid var(--dhair);font-size:12.5px;color:var(--fog2)}
 @media (max-width:900px){footer .wrap.ft{grid-template-columns:repeat(2,minmax(0,1fr))}footer .fb{grid-column:1/-1}}
 @media (max-width:480px){footer .wrap.ft{grid-template-columns:minmax(0,1fr)}}
@@ -320,9 +321,6 @@ footer .wrap.fl{display:flex;justify-content:space-between;gap:10px 24px;flex-wr
 .pwrap .vwrap{background:var(--sheet)}
 /* closing: demo + pricing */
 .close .two{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(32px,5vw,80px);align-items:end}
-.close .price{display:flex;flex-direction:column;gap:12px;padding-top:22px;border-top:1px solid var(--lineD)}
-.close .price p{font-size:16px;color:var(--ink2);max-width:40ch}
-.close .price .more{color:var(--gold)}
 @media (max-width:1000px){.mod,.mod.r{grid-template-columns:minmax(0,1fr)}.mod.r .txt{order:0}.mod .mshot{justify-self:start}.close .two{grid-template-columns:minmax(0,1fr)}}
 @media (max-width:640px){.s2o{grid-template-columns:minmax(0,1fr)}.s2o .arr svg{transform:rotate(90deg)}}
 /* four-state rail: Approved, Accepted, Live, Findable. The product's own model, used as the site's signature */
